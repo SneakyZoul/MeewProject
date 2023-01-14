@@ -1,0 +1,7 @@
+{
+  "name": "meew",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
