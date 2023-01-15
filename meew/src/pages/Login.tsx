@@ -1,23 +1,43 @@
-import { IonButton, IonContent, IonHeader, IonInput, IonNavLink, IonPage, IonTitle, IonToolbar } from '@ionic/react'
+import { IonButton, IonContent, IonHeader, IonInput, IonNavLink, IonPage, IonTitle, IonToolbar,IonIcon, IonItem, IonLabel, useIonRouter, IonRoute, IonRouterLink } from '@ionic/react'
 import React, { useEffect, useState } from 'react'
+import { Redirect } from 'react-router';
+import { Route } from 'workbox-routing';
 import Home from './Home'
+import UserPage from './UserPage';
+
 
 
 
 const Login:React.FC =() => {
 
-    const [userName, setUserName] = useState<"">()
+    const [userName, setUserName] = useState<string>()
+    const [userPassword, setUserPassword] = useState<string>()
 
     useEffect(() => {
     console.log(userName)
     }, [userName])
 
+    useEffect(()=>{
+        console.log(userPassword);
+    },[userPassword])
+
+    const loginUser=()=> {
+        if(userName == "name" && userPassword == "Password"){
+            return <IonRouterLink routerLink='./UserPage'/>
+            }else 
+            return alert("Hell no")
+        }
+    
+
+
   return(
     <IonPage>
-    <IonHeader>
+        <IonHeader>
 
       <IonToolbar>
-        <IonTitle>Blank maybe</IonTitle>
+        <IonTitle>Login Page</IonTitle>
+        <IonIcon icon='chevron-back-outline'/>
+        <IonButton routerLink='/Home'>Back To Home</IonButton>
       </IonToolbar>
 
     </IonHeader>
@@ -29,16 +49,26 @@ const Login:React.FC =() => {
         <IonToolbar>
           <IonTitle size="large">Blank</IonTitle>
         </IonToolbar>
-      </IonHeader>
-      <IonInput value={userName} onIonChange={(e:any)=>(e.target.value)}></IonInput>
+      </IonHeader>     
+    <IonItem fill='solid'>
+        <IonLabel position="floating">Name</IonLabel>
+        <IonInput value={userName} onIonChange={(e:any)=> setUserName(e.target.value)} placeholder="Enter User Name"></IonInput>
+      </IonItem>
+
+      <IonItem fill="solid">
+        <IonLabel position="floating">Password</IonLabel>
+        <IonInput value={userPassword} onIonChange={(e:any)=> setUserPassword(e.target.value)} placeholder="Enter Password" type='password'></IonInput>
+      </IonItem>
+     <div>
+            <IonButton onClick={loginUser}>Login</IonButton>
+
+     </div>
      
-    <IonNavLink routerDirection="forward" component={() => <Home/>}>
-        <IonButton>Login</IonButton>
-    </IonNavLink>
+           
     </IonContent>
      
-   
-   
+
+      
     
 
   </IonPage>

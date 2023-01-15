@@ -4,22 +4,21 @@ import Welcome from '../components/Welcome'
 import './Home.css';
 import Login from './Login';
 
-const Home: React.FC = () => (
+let userName:string;
+
+const UserPage: React.FC = () => (
   <IonPage>
     <IonHeader>
     
       <IonToolbar>
-        <IonTitle>Home Page</IonTitle>
+        <IonTitle>This is The User Page</IonTitle>
       </IonToolbar>
     </IonHeader>
     <IonContent class="ion-padding">
-      <h1>Home Page</h1>
-      <Welcome />
-      <IonButton routerLink='./Login'>Login</IonButton>
-      <IonButton routerLink='./SignUp'>Login</IonButton>
+      <h1>{userName}</h1>
 
     </IonContent>
   </IonPage>
 );
 
-export default Home;
+export default UserPage;
